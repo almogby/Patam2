@@ -18,6 +18,7 @@ public class MyServer implements Server{
 		this.stop=false;
 	}
 	
+	
 	private void startServer(ClientHandler ch) throws IOException{
         this.serverSocket = new ServerSocket(this.port);
         this.serverSocket.setSoTimeout(5000);
