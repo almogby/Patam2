@@ -5,8 +5,12 @@ import java.io.FileNotFoundException;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
 public class PipeDisplayer extends Canvas{
 	
@@ -21,13 +25,28 @@ public class PipeDisplayer extends Canvas{
 	private StringProperty curvedPipeFileName;
 	private StringProperty straightPipeFileName;
 	
+	//set pics
+	private Image background;
+	private Image startPoint;
+	private Image targetPoint;
+	private Image win;
+	private Image curvedPipe;
+	private Image curved90Pipe;
+	private Image curved180Pipe;
+	private Image curved270Pipe;
+	private Image straightPipe;
+	private Image straight90Pipe;
+	
 	
 	public PipeDisplayer() {
+		this.backgroundFileName = new SimpleStringProperty();
 		this.startPointFileName = new SimpleStringProperty();
 		this.targetPointFileName = new SimpleStringProperty();
 		this.winFileName = new SimpleStringProperty();
 		this.curvedPipeFileName = new SimpleStringProperty();
 		this.straightPipeFileName = new SimpleStringProperty();
+		
+		//To check if need
 		cCol=0;
 		cRow=1;
 	}
@@ -94,12 +113,6 @@ public class PipeDisplayer extends Canvas{
 	}
 	
 	private void insertImages () {
-		Image background=null;
-		Image startPoint=null;
-		Image targetPoint=null;
-		Image win=null;
-		Image curvedPipe=null;
-		Image straightPipe=null;
 		
 		try {
 			background = new Image(new FileInputStream(backgroundFileName.get()));
@@ -113,6 +126,62 @@ public class PipeDisplayer extends Canvas{
 			e.printStackTrace();
 		}
 		
+		SnapshotParameters params = new SnapshotParameters();
+		params.setFill(Color.TRANSPARENT);
+		
+		//Handle rotate straightPipe
+		ImageView imageViewStraightPipe = new ImageView(straightPipe);
+		imageViewStraightPipe.setRotate(90);
+		straight90Pipe = imageViewStraightPipe.snapshot(params, null);
+		
+		//Handle rotate curvedPipe
+		ImageView imageViewCurvedPipe = new ImageView(curvedPipe);
+		imageViewCurvedPipe.setRotate(90);
+		curved90Pipe=imageViewCurvedPipe.snapshot(params, null);
+		imageViewCurvedPipe.setRotate(180);
+		curved180Pipe=imageViewCurvedPipe.snapshot(params, null);
+		imageViewCurvedPipe.setRotate(270);
+		curved270Pipe=imageViewCurvedPipe.snapshot(params, null);
+		
+	}
+	
+	public void redraw() {
+		if (pipeData!=null) {
+			double W=getWidth();
+			double H=getHeight();
+			double w= W / pipeData[0].length;
+			double h = H /pipeData.length;
+			
+			GraphicsContext gc = getGraphicsContext2D();
+			
+			//Set background
+			gc.drawImage(background, 0, 0, w, h);
+		
+			//Draw specific cell
+			for (int i=0;i<pipeData.length;i++) {
+				for(int j=0;j<pipeData[i].length;j++) {
+					if (pipeData[i][j]!=0) {
+						if (pipeData[i][j]=='s')
+							gc.drawImage(startPoint, j*w, i*h, w, h);
+						if (pipeData[i][j]=='g')
+							gc.drawImage(targetPoint, j*w, i*h, w, h);
+						if (pipeData[i][j]=='L')
+							gc.drawImage(curvedPipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='F')
+							gc.drawImage(curved90Pipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='7')
+							gc.drawImage(curved180Pipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='J')
+							gc.drawImage(curved270Pipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='|')
+							gc.drawImage(straightPipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='-')
+							gc.drawImage(straight90Pipe, j*w, i*h, w, h); 		
+						}
+					}
+				}
+			}
+						
+		}
 	}
 
-}
