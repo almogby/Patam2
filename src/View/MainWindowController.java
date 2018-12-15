@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import View.PipeDisplayer;
 
@@ -28,6 +29,7 @@ public class MainWindowController implements Initializable {
 	public void initialize(java.net.URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		pipeDisplayer.setPipeData(pipeData);
+		pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{pipeDisplayer.clickedOnPosition(e);});
 	}
 	
 	public void start() {

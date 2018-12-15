@@ -173,7 +173,7 @@ public class PGSearchable implements Searchable<char[][]>{
 		return result;
 	}
 		
-	private char getNextClick(char c) {
+	public static char getNextClick(char c) {
         switch (c) {
             case '|':
                 return '-';

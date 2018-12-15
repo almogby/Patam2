@@ -3,6 +3,7 @@ package View;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import PG.PGSearchable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.SnapshotParameters;
@@ -10,12 +11,14 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 public class PipeDisplayer extends Canvas{
 	
 	char[][] pipeData;
-	int cRow, cCol;
+	
+	private double w,h;
 	
 	//pics fileName
 	private StringProperty backgroundFileName;
@@ -37,6 +40,8 @@ public class PipeDisplayer extends Canvas{
 	private Image straightPipe;
 	private Image straight90Pipe;
 	
+	private GraphicsContext gc = getGraphicsContext2D();
+	
 	
 	public PipeDisplayer() {
 		this.backgroundFileName = new SimpleStringProperty();
@@ -45,10 +50,6 @@ public class PipeDisplayer extends Canvas{
 		this.winFileName = new SimpleStringProperty();
 		this.curvedPipeFileName = new SimpleStringProperty();
 		this.straightPipeFileName = new SimpleStringProperty();
-		
-		//To check if need
-		cCol=0;
-		cRow=1;
 	}
 	
 	public void setPipeData (char[][] pipeData) {
@@ -149,7 +150,7 @@ public class PipeDisplayer extends Canvas{
 	
 	//Just for test - need to remove
 	public void goalButton() {
-		GraphicsContext gc = getGraphicsContext2D();
+		gc = getGraphicsContext2D();
 		gc.drawImage(win, 0, 0, getWidth(), getHeight());
 	}
 	
@@ -157,10 +158,10 @@ public class PipeDisplayer extends Canvas{
 		if (pipeData!=null) {
 			double W=getWidth();
 			double H=getHeight();
-			double w= W / pipeData[0].length;
-			double h = H /pipeData.length;
+			w= W / pipeData[0].length;
+			h = H /pipeData.length;
 			
-			GraphicsContext gc = getGraphicsContext2D();
+			gc = getGraphicsContext2D();
 			
 			//Set background
 			gc.drawImage(background, 0, 0, w, h);
@@ -191,5 +192,21 @@ public class PipeDisplayer extends Canvas{
 			}
 						
 		}
+	
+    @Override
+    public void resize(double width, double height) {
+        super.setWidth(width);
+        super.setHeight(height);
+        redraw();
+    }
+    
+    public void clickedOnPosition(MouseEvent event) {
+        int col = (int) (event.getX() / w);
+        int row = (int) (event.getY() / h);
+        pipeData[row][col] = PGSearchable.getNextClick(pipeData[row][col]);
+        //TODO: clear to prev image after click
+		//gc.clearRect(pipeData[row][col], pipeData[row][col], w, h);
+        redraw();
+    }
 	}
 
