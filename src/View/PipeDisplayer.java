@@ -53,6 +53,8 @@ public class PipeDisplayer extends Canvas{
 	
 	public void setPipeData (char[][] pipeData) {
 		this.pipeData=pipeData;
+		insertImages();
+		redraw();
 	}
 
 	public String getBackgroundFileName() {
@@ -143,6 +145,12 @@ public class PipeDisplayer extends Canvas{
 		imageViewCurvedPipe.setRotate(270);
 		curved270Pipe=imageViewCurvedPipe.snapshot(params, null);
 		
+	}
+	
+	//Just for test - need to remove
+	public void goalButton() {
+		GraphicsContext gc = getGraphicsContext2D();
+		gc.drawImage(win, 0, 0, getWidth(), getHeight());
 	}
 	
 	public void redraw() {

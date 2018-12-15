@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import View.PipeDisplayer?>
 
 <BorderPane prefHeight="349.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainWindowController">
    <top>
@@ -39,7 +40,11 @@
          <children>
             <Button mnemonicParsing="false" onAction="#start" text="Start" />
             <Button mnemonicParsing="false" text="Stop" />
+            <Button mnemonicParsing="false" text="Goal" />
          </children>
       </VBox>
    </left>
+    <center>
+     <PipeDisplayer fx:id="pipeDisplayer" height="300.0" width="300.0" BorderPane.alignment="CENTER" backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/pipe1.png" straightPipeFileName="./resources/Pipe2.png"/>
+   </center>
 </BorderPane>
