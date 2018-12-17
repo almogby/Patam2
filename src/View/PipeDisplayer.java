@@ -156,15 +156,17 @@ public class PipeDisplayer extends Canvas{
 	
 	public void redraw() {
 		if (pipeData!=null) {
+			
 			double W=getWidth();
 			double H=getHeight();
 			w= W / pipeData[0].length;
 			h = H /pipeData.length;
 			
 			gc = getGraphicsContext2D();
+			gc.clearRect(0, 0, W, H);
 			
 			//Set background
-			gc.drawImage(background, 0, 0, w, h);
+			gc.drawImage(background, 0,0,W,H);
 		
 			//Draw specific cell
 			for (int i=0;i<pipeData.length;i++) {
