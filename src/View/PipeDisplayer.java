@@ -151,6 +151,7 @@ public class PipeDisplayer extends Canvas{
 	//Just for test - need to remove
 	public void goalButton() {
 		gc = getGraphicsContext2D();
+		gc.clearRect(0, 0, getWidth(), getHeight());
 		gc.drawImage(win, 0, 0, getWidth(), getHeight());
 	}
 	
