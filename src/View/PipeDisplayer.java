@@ -66,15 +66,14 @@ public class PipeDisplayer extends Canvas{
 	public void setBackgroundFileName(String backgroundFileName) {
 		this.backgroundFileName.set(backgroundFileName);
 	}
+	
 	public String getStartPointFileName() {
 		return startPointFileName.get();
 	}
 
-
 	public void setStartPointFileName(String startPointFileName) {
 		this.startPointFileName.set(startPointFileName);
 	}
-
 
 	public String getTargetPointFileName() {
 		return targetPointFileName.get();

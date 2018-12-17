@@ -38,7 +38,7 @@ public class MainWindowController implements Initializable {
 	
 	public void openFile() {
 		FileChooser fc= new FileChooser();
-		fc.setTitle("open maze file");
+		fc.setTitle("Open maze file");
 		fc.setInitialDirectory(new File("./resources"));
 		//fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Only XML", "*.xml"));
 		File chosen = fc.showOpenDialog(null);
@@ -47,6 +47,18 @@ public class MainWindowController implements Initializable {
 		}
 	}
 	
+	public void saveFile() {
+		FileChooser fc = new FileChooser();
+		fc.setTitle("Save maze");
+		FileChooser.ExtensionFilter fcEf = new FileChooser.ExtensionFilter("Only Texts", "*.txt");
+		
+		fc.getExtensionFilters().add(fcEf);
+		fc.setSelectedExtensionFilter(fcEf);
+		
+		File sFile = fc.showSaveDialog(null);
+		if (sFile!=null);
+			//TODO add save in ViewModel PipeGame
+	}
 	public void goal() {
 		pipeDisplayer.goalButton();
 	}
