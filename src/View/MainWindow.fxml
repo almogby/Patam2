@@ -45,6 +45,6 @@
       </VBox>
    </left>
     <center>
-     <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/pipe1.png" straightPipeFileName="./resources/Pipe2.png"/>
+     <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png"/>
    </center>
 </BorderPane>
