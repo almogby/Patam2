@@ -210,5 +210,35 @@ public class PipeDisplayer extends Canvas{
 		//gc.clearRect(pipeData[row][col], pipeData[row][col], w, h);
         redraw();
     }
+	@Override
+	public boolean isResizable() {
+		return true;
+	}
+    
+    @Override
+	public double minHeight(double width) {
+		return 64;
+	}
+
+	@Override
+	public double maxHeight(double width) {
+		return 1000;
+	}
+
+	@Override
+	public double prefHeight(double width) {
+		return minHeight(width);
+	}
+
+	@Override
+	public double minWidth(double height) {
+		return 0;
+	}
+
+	@Override
+	public double maxWidth(double height) {
+		return 10000;
+	}
+
 	}
 
