@@ -24,9 +24,10 @@
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Theme">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Mrs Potts and Chip" onAction="#setThemePottsChip" />
+              <MenuItem mnemonicParsing="false" text="Timon and Pubmba" onAction="#setThemeTimonPumba"/>
             </items>
           </Menu>
         </menus>
@@ -45,6 +46,9 @@
       </VBox>
    </left>
     <center>
-     <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png"/>
+     <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
+
+
+<!-- backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png" -->

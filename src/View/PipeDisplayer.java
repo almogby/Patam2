@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import PG.PGSearchable;
+import View.Themes.PottsChip;
+import View.Themes.Theme;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.SnapshotParameters;
@@ -17,16 +19,17 @@ import javafx.scene.paint.Color;
 public class PipeDisplayer extends Canvas{
 	
 	char[][] pipeData;
+	Theme theme;
 	
 	private double w,h;
 	
-	//pics fileName
+/*	//pics fileName
 	private StringProperty backgroundFileName;
 	private StringProperty startPointFileName;
 	private StringProperty targetPointFileName;
 	private StringProperty winFileName;
 	private StringProperty curvedPipeFileName;
-	private StringProperty straightPipeFileName;
+	private StringProperty straightPipeFileName;*/
 	
 	//set pics
 	private Image background;
@@ -44,12 +47,18 @@ public class PipeDisplayer extends Canvas{
 	
 	
 	public PipeDisplayer() {
-		this.backgroundFileName = new SimpleStringProperty();
+		theme = new PottsChip();
+/*		this.backgroundFileName = new SimpleStringProperty();
 		this.startPointFileName = new SimpleStringProperty();
 		this.targetPointFileName = new SimpleStringProperty();
 		this.winFileName = new SimpleStringProperty();
 		this.curvedPipeFileName = new SimpleStringProperty();
-		this.straightPipeFileName = new SimpleStringProperty();
+		this.straightPipeFileName = new SimpleStringProperty();*/
+	}
+	
+	public void setPipeTheme(Theme theme) {
+		this.theme=theme;
+		setPipeData(this.pipeData);
 	}
 	
 	public void setPipeData (char[][] pipeData) {
@@ -58,7 +67,7 @@ public class PipeDisplayer extends Canvas{
 		redraw();
 	}
 
-	public String getBackgroundFileName() {
+/*	public String getBackgroundFileName() {
 		return backgroundFileName.get();
 	}
 
@@ -112,21 +121,21 @@ public class PipeDisplayer extends Canvas{
 
 	public void setStraightPipeFileName(String straightPipeFileName) {
 		this.straightPipeFileName.set(straightPipeFileName);
-	}
+	}*/
 	
 	private void insertImages () {
 		
-		try {
-			background = new Image(new FileInputStream(backgroundFileName.get()));
-			startPoint = new Image(new FileInputStream(startPointFileName.get()));
-			targetPoint = new Image(new FileInputStream(targetPointFileName.get()));
-			win = new Image(new FileInputStream(winFileName.get()));
-			curvedPipe = new Image(new FileInputStream(curvedPipeFileName.get()));
-			straightPipe = new Image(new FileInputStream(straightPipeFileName.get()));
-		} catch (FileNotFoundException e) {
+		//try {
+			background = theme.getBackgroundImage();//new Image(new FileInputStream(backgroundFileName.get()));
+			startPoint = theme.getStartImage();//new Image(new FileInputStream(startPointFileName.get()));
+			targetPoint = theme.getGoalImage(); //new Image(new FileInputStream(targetPointFileName.get()));
+			win =theme.getWinImage(); // new Image(new FileInputStream(winFileName.get()));
+			curvedPipe = theme.getCurvedPipe(); //new Image(new FileInputStream(curvedPipeFileName.get()));
+			straightPipe = theme.getStraightPipe(); //new Image(new FileInputStream(straightPipeFileName.get()));
+		//} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			//e.printStackTrace();
+		//}
 		
 		SnapshotParameters params = new SnapshotParameters();
 		params.setFill(Color.TRANSPARENT);

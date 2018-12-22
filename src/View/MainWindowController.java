@@ -8,6 +8,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import View.PipeDisplayer;
+import View.Themes.PottsChip;
+import View.Themes.Theme;
+import View.Themes.TimonPumba;
 
 public class MainWindowController implements Initializable {
 	
@@ -24,7 +27,7 @@ public class MainWindowController implements Initializable {
 	
 	@FXML
 	PipeDisplayer pipeDisplayer;
-	
+
 	@Override
 	public void initialize(java.net.URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
@@ -62,5 +65,17 @@ public class MainWindowController implements Initializable {
 	public void goal() {
 		pipeDisplayer.goalButton();
 	}
+	
+	public void setThemePottsChip() {
+		Theme pottsChipTheme = new PottsChip();
+		pipeDisplayer.setPipeTheme(pottsChipTheme);
+	}
+	
+	public void setThemeTimonPumba() {
+		Theme timonPumbaTheme = new TimonPumba();
+		pipeDisplayer.setPipeTheme(timonPumbaTheme);
+	}
+
+	
 
 }
