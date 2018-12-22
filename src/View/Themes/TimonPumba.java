@@ -25,13 +25,14 @@ public class TimonPumba implements Theme {
 			this.goalImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Goal_Timon_2.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Win_TimonPumba_2.png"));
 			this.curvedPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/CurvedPipe_2.png"));
-			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_2.png"));
+			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_1.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
+
 
 	@Override
 	public Image getBackgroundImage() {
@@ -67,5 +68,7 @@ public class TimonPumba implements Theme {
 	public Image getStraightPipe() {
 		return this.straightPipe;
 	}
+
+
 
 }

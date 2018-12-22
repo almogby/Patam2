@@ -14,6 +14,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 
 public class PipeDisplayer extends Canvas{
@@ -65,6 +67,13 @@ public class PipeDisplayer extends Canvas{
 		this.pipeData=pipeData;
 		insertImages();
 		redraw();
+	}
+	
+	public void startMusic() {
+		Media backgroundMusic = theme.getBackgroundMusic();
+		MediaPlayer mediaPlayer=new MediaPlayer(backgroundMusic);
+		mediaPlayer.setAutoPlay(true);
+		//MediaView mediaView = new MediaView(mediaPlayer);
 	}
 
 /*	public String getBackgroundFileName() {
