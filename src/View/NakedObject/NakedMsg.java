@@ -37,4 +37,5 @@ public class NakedMsg implements NakedObject {
 		return null;
 	}
 	
+	//test
 }
