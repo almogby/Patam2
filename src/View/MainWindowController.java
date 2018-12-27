@@ -12,12 +12,20 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 import View.PipeDisplayer;
+import View.Model.PGViewModel;
+import View.NakedObject.NakedObjDisplayer;
+import View.NakedObject.ServerConfig;
 import View.Themes.PottsChip;
 import View.Themes.Theme;
 import View.Themes.TimonPumba;
 
 
 public class MainWindowController implements Initializable {
+	
+	PGViewModel PGVM;
+	
+    private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
+    private ServerConfig serverConfig = new ServerConfig();
 	
     char [][] pipeData = {
             {'s', 'L', 'F', '-', 'J', '7', '7', '7' , '7'},
@@ -44,11 +52,16 @@ public class MainWindowController implements Initializable {
 		System.out.println("Start");
 	}
 	
+	public void serverConfig() {
+		nakedObjDisplayer.display(this.serverConfig);
+		
+	}
+	
 	public void openFile() {
 		FileChooser fc= new FileChooser();
 		fc.setTitle("Open maze file");
 		fc.setInitialDirectory(new File("./resources"));
-		//fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Only XML", "*.xml"));
+		fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("Only Texts", "*.txt"));
 		File chosen = fc.showOpenDialog(null);
 		if (chosen != null) {
 			System.out.println(chosen.getName());
