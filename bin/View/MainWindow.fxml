@@ -41,7 +41,6 @@
          <children>
             <Button mnemonicParsing="false" onAction="#start" text="Start" />
             <Button mnemonicParsing="false" text="Stop" />
-            <Button mnemonicParsing="false" onAction="#goal" text="Goal" />
          </children>
       </VBox>
    </left>

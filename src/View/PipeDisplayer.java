@@ -1,7 +1,11 @@
 package View;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+
+import javax.print.DocFlavor.URL;
 
 import PG.PGSearchable;
 import View.Themes.PottsChip;
@@ -16,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 
 public class PipeDisplayer extends Canvas{
@@ -50,6 +55,7 @@ public class PipeDisplayer extends Canvas{
 	
 	public PipeDisplayer() {
 		theme = new PottsChip();
+
 /*		this.backgroundFileName = new SimpleStringProperty();
 		this.startPointFileName = new SimpleStringProperty();
 		this.targetPointFileName = new SimpleStringProperty();
@@ -66,15 +72,35 @@ public class PipeDisplayer extends Canvas{
 	public void setPipeData (char[][] pipeData) {
 		this.pipeData=pipeData;
 		insertImages();
+		startMusic();
 		redraw();
 	}
 	
 	public void startMusic() {
-		Media backgroundMusic = theme.getBackgroundMusic();
-		MediaPlayer mediaPlayer=new MediaPlayer(backgroundMusic);
-		mediaPlayer.setAutoPlay(true);
+			System.out.println("Start Music");
+			MediaPlayer mp = new MediaPlayer(theme.getBackgroundMusic());
+			Runnable playMusic = () -> mp.play();
+			mp.setOnReady(playMusic);
+			
+			/*		AudioClip media =  new AudioClip(new File("/Users/amitsaar/git/Patam2/resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
+			media.setCycleCount(INDEFINITE);
+			media.play();*/
+			
+	/*		System.out.println("Start Play Music");
+			Media media = new Media(new File("./resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
+			MediaPlayer mp = new MediaPlayer(media);
+			Runnable playMusic = () -> mp.play();
+			mp.setOnReady(playMusic);*/
+	
+		}
+		
+
+		
+	//	Media backgroundMusic = theme.getBackgroundMusic();
+	//	MediaPlayer mediaPlayer=new MediaPlayer(backgroundMusic);
+	//	mediaPlayer.play();
 		//MediaView mediaView = new MediaView(mediaPlayer);
-	}
+	
 
 /*	public String getBackgroundFileName() {
 		return backgroundFileName.get();

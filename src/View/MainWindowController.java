@@ -1,16 +1,21 @@
 package View;
 
+
 import java.io.File;
 import java.util.ResourceBundle;
+
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
+
 import javafx.stage.FileChooser;
+
 import View.PipeDisplayer;
 import View.Themes.PottsChip;
 import View.Themes.Theme;
 import View.Themes.TimonPumba;
+
 
 public class MainWindowController implements Initializable {
 	
@@ -66,6 +71,7 @@ public class MainWindowController implements Initializable {
 		pipeDisplayer.goalButton();
 	}
 	
+
 	public void setThemePottsChip() {
 		Theme pottsChipTheme = new PottsChip();
 		pipeDisplayer.setPipeTheme(pottsChipTheme);

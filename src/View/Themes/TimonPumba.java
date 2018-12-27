@@ -1,5 +1,6 @@
 package View.Themes;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -20,12 +21,12 @@ public class TimonPumba implements Theme {
 	public TimonPumba() {
 		try {
 			this.backgroundImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Background_leaves_2.jpg"));
-			//this.backgroundMusic = new Media("./resources/Theme1_PottsChip/BeOurGuest_1.mp3");
+			this.backgroundMusic = new Media (new File("./resources/Theme2_TimonPumba/DontWorry.mp3").toURI().toString());
 			this.startImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Start_Pumba_2.png"));
 			this.goalImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Goal_Timon_2.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Win_TimonPumba_2.png"));
 			this.curvedPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/CurvedPipe_2.png"));
-			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_1.png"));
+			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_2.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
