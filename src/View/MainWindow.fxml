@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -30,17 +34,20 @@
               <MenuItem mnemonicParsing="false" text="Timon and Pubmba" onAction="#setThemeTimonPumba"/>
             </items>
           </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+          <MenuItem mnemonicParsing="false" text="How to play?"/> 
+          </Menu>
         </menus>
       </MenuBar>
    </top>
    <bottom>
-      <HBox prefHeight="34.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+
    </bottom>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#start" text="Start" />
-            <Button mnemonicParsing="false" text="Stop" />
+            <Button mnemonicParsing="false" onAction="#start" text="Start"/>
+            <Button mnemonicParsing="false" text="Get Solution"/>
          </children>
       </VBox>
    </left>

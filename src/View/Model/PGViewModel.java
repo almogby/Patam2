@@ -14,11 +14,16 @@ public class PGViewModel {
 	public ListProperty<char[]> PGBorad;
 	public BooleanProperty isGoal;
 	public IntegerProperty numSteps;
+	public IntegerProperty time;
 	
 	private PGModel PGModel;
 	
 	public PGViewModel (PGModel PGModel) {
 		this.PGModel=PGModel;
+		this.PGBorad.bind(PGModel.PGBorad);
+		this.isGoal.bind(PGModel.isGoal);
+		this.numSteps.bind(PGModel.numSteps);
+		this.time.bind(PGModel.time);
 	}
 	
 	public void connect (String serverIP, String serverPort) {
@@ -29,5 +34,16 @@ public class PGViewModel {
 		this.PGModel.disconnect();
 	}
 	
+	public void solve() throws IOException, InterruptedException {
+		this.PGModel.solve();
+	}
+	
+	public void getNextClick(int row,int col) {
+		this.PGModel.getNextClick(row, col);
+	}
+	
+	 public void loadGame(String fileName){
+		 this.PGModel.loadGame(fileName);
+	 }
 
 }

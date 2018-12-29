@@ -158,7 +158,7 @@ public class PipeDisplayer extends Canvas{
 		this.straightPipeFileName.set(straightPipeFileName);
 	}*/
 	
-	private void insertImages () {
+	public void insertImages () {
 		
 		//try {
 			background = theme.getBackgroundImage();//new Image(new FileInputStream(backgroundFileName.get()));

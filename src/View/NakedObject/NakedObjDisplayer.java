@@ -44,7 +44,22 @@ public class NakedObjDisplayer {
 	}
 	
 	public void display (NakedMsg msg) {
+		dialog.initModality(Modality.APPLICATION_MODAL);
+		this.dialogBox = new VBox(msg.getFieldNames().size()*10);
+		dialogBox.setPadding(new Insets(40, 40, 40, 40));
 		
+		for (String message : msg.getFieldNames()) {
+			Text caption = new Text(message);
+			this.dialogBox.getChildren().add(caption);
+		}
+		
+		Button okButton = new Button();
+		okButton.setText("OK");
+		okButton.setOnAction(value -> dialog.close());
+
+		this.dialogBox.getChildren().add(okButton);
+		
+		showDialog(this.dialog, this.dialogBox);
 	}
 	
 	private StringProperty createDisplayForField (String fieldName, String fieldValue) {

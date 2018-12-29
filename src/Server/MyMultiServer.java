@@ -13,7 +13,7 @@ public class MyMultiServer implements MultiServer
     
     public MyMultiServer(final int port, final int threadsNum) {
         this.port = port;
-        this.threadPool = new ThreadPoolExecutor(1, threadsNum, 10, TimeUnit.SECONDS, new PriorityBlockingQueue<Runnable>());
+        this.threadPool = new ThreadPoolExecutor(10, threadsNum, 10, TimeUnit.SECONDS, new PriorityBlockingQueue<Runnable>());
     }
     
     private void startServer(final ClientHandler ch) throws IOException {
