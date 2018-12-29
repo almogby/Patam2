@@ -1,33 +1,37 @@
 package View.NakedObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+
 
 public class ServerConfig implements NakedObject{
 	
-	private String IP;
-	private String Port;
+	private Map<String, String> serverFields = new HashMap<>();
+	
 	
 	public ServerConfig() {
-		this.IP = "localhost";
-		this.Port="6400";
+		serverFields.put("Server", "localhost");
+		serverFields.put("Port", "6400");
 	}
 
 	@Override
 	public List<String> getFieldNames() {
-		return null;
+		return new ArrayList<>(serverFields.keySet());
 	}
 
 	@Override
 	public void setFieldNewValue(String fieldName, String newValue) {
-		// TODO Auto-generated method stub
-		
+		serverFields.put(fieldName, newValue);
+		System.out.println("New FieldName:"+fieldName+" "+"New FieldValue:"+newValue);
 		
 	}
 
 	@Override
 	public String getFieldValue(String fieldName) {
-		// TODO Auto-generated method stub
-		return null;
+		return serverFields.get(fieldName);
 	}
 
 }

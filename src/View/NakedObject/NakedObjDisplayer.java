@@ -26,22 +26,16 @@ public class NakedObjDisplayer {
 		this.dialogBox = new VBox(fields.length*10);
 		dialogBox.setPadding(new Insets(40, 40, 40, 40));
 		
-		for (int i=0;i<fields.length;i++) 
-			textPropertyList.add(createDisplayForField(fields[i].getName(), obj.getFieldValue(fields[i].getName())));
-
+		 for (String fieldName : obj.getFieldNames()) {
+	            String fieldValue = obj.getFieldValue(fieldName);
+	            textPropertyList.add(createDisplayForField(fieldName, fieldValue));
+	        }
+		
 		Button saveButton = new Button();
 		saveButton.setText("Save");
 		saveButton.setOnAction(value-> {
-			for (int i=0;i<fields.length;i++) {
-				try {
-					fields[i].set(obj,textPropertyList.get(i).getValue());
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			for (int i=0;i<obj.getFieldNames().size();i++) {
+				obj.setFieldNewValue(obj.getFieldNames().get(i), textPropertyList.get(i).getValue());
 			}
 			this.dialog.close();
 		});
