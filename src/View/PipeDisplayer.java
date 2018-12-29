@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import javax.print.DocFlavor.URL;
 
 import PG.PGSearchable;
+import View.NakedObject.NakedMsg;
 import View.Themes.PottsChip;
 import View.Themes.Theme;
 import javafx.beans.property.SimpleStringProperty;
@@ -284,5 +285,15 @@ public class PipeDisplayer extends Canvas{
 		return 10000;
 	}
 
+	public String howToPlayMsg() {
+		return ("Pipeline is a surprisingly fun 3D pipe laying game. "
+			+	System.lineSeparator()+ "Presented as a kid's game, gamers will enjoy it as a light contest too. "
+			+   System.lineSeparator()+ "4 players have colourful plastic sets of plumbing; straights, angles, T joints and capping pieces. "
+			+   System.lineSeparator()+ "Start from one side of the board, "
+			+   System.lineSeparator()+ "spin a spinner (or roll a special die) to select your piece and try to build a pipeline over to ending points on the opposite side. "
+			+   System.lineSeparator()+ "You can rotate your pipeline if required, but not backtrack, so when your neighbour's pipe gets in your way, "
+			+   System.lineSeparator()+ "you have to build over or around. First to connect wins.");
+		
+	}
 	}
 

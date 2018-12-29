@@ -35,7 +35,7 @@
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-          <MenuItem mnemonicParsing="false" text="How to play?" /> 
+          <MenuItem mnemonicParsing="false" text="How to play?" onAction="#howToPlayMsg"/> 
           </Menu>
         </menus>
       </MenuBar>

@@ -25,6 +25,7 @@ import View.Themes.Theme;
 import View.Themes.TimonPumba;
 
 
+
 public class MainWindowController implements Initializable {
 	
 	PGViewModel PGVM;
@@ -36,7 +37,7 @@ public class MainWindowController implements Initializable {
 	
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
-	
+   
     char [][] pipeData = {
             {'s', 'L', 'F', '-', 'J', '7', '7', '7' , '7'},
             {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
@@ -135,6 +136,11 @@ public class MainWindowController implements Initializable {
 	public void serverConfig() {
 		nakedObjDisplayer.display(this.serverConfig);
 		
+	}
+	
+	public void howToPlayMsg() {
+		NakedMsg howToPlay = new NakedMsg(pipeDisplayer.howToPlayMsg());
+		nakedObjDisplayer.display(howToPlay);
 	}
 	
 	public void openFile() throws IOException {
