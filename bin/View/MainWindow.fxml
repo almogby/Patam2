@@ -10,8 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.Label?>
 
-<?import View.PipeDisplayer?>  
+
+<!-- <?import View.PipeDisplayer?>   --> 
 <!-- backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png" -->
 
 <BorderPane prefHeight="349.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainWindowController">
@@ -65,13 +67,13 @@
                   <Font name="Kefa Regular" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="timeText" />
+            <Label fx:id="timeText" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Steps:">
                <font>
                   <Font name="Kefa Regular" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="numStepsText" />
+            <Label fx:id="numStepsText" />
             <Button mnemonicParsing="false" onAction="#solve" prefHeight="43.0" prefWidth="160.0" text="Get Solution" textAlignment="CENTER" textFill="#5aa120">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -83,6 +85,6 @@
       </VBox>
    </left>
     <center>
-  <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />      
+ <!--<PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />   -->      
    </center>
 </BorderPane>

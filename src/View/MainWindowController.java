@@ -22,6 +22,7 @@ import javafx.beans.property.ListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -56,9 +57,9 @@ public class MainWindowController implements Initializable {
 	@FXML
 	PipeDisplayer pipeDisplayer;
 	@FXML
-	TextField numStepsText;
+	Label numStepsText;
 	@FXML
-	TextField timeText;
+	Label timeText;
 	@FXML
 	Button solve;
 	@FXML
