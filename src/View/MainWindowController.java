@@ -61,6 +61,8 @@ public class MainWindowController implements Initializable {
 	TextField timeText;
 	@FXML
 	Button solve;
+	@FXML
+	Button start;
 	
 /*	public void setViewModel (PGViewModel PGVM) {
 		this.PGVM=PGVM;
@@ -95,12 +97,12 @@ public class MainWindowController implements Initializable {
 		     PGVM.getNextClick(col, row);
 		     pipeDisplayer.redraw();
 			 });
-		 
 
 
 	     PGVM.PGBoradList.addListener((observable, oldValue, newValue) -> pipeDisplayer.setPipeData(PGVM.PGBoradList.toArray(new char[PGVM.PGBoradList.size()][])));
 	     PGVM.numSteps.addListener((observable, oldValue, newValue) -> this.numStepsText.setText(Integer.toString(PGVM.numSteps.get())));
 	     PGVM.time.addListener((observable, oldValue, newValue) -> this.timeText.setText(Integer.toString(PGVM.time.get())));
+	     
 	    }
 	 
 	 public void solve() {
@@ -113,6 +115,7 @@ public class MainWindowController implements Initializable {
 	                    Platform.runLater(() -> System.out.println("Start Solving"));
 	                    PGVM.connect(serverConfig.getIP(), serverConfig.getPort());
 	                    PGVM.solve();
+	                    pipeDisplayer.redraw();
 	                    PGVM.disconnect();
 	                    Platform.runLater(() -> System.out.println("Server Status: Disconnected"));
 	                } catch (IOException e) {
@@ -181,12 +184,14 @@ public class MainWindowController implements Initializable {
 	
 	public void start() {
 		this.PGVM.start();
+		start.setDisable(true);
 		System.out.println("Start");
 	}
 	
 	
 	public void stop() {
 		this.PGVM.stop();
+		start.setDisable(false);
 		System.out.println("Stop");
 	}
 	

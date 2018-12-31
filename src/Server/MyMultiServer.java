@@ -11,9 +11,9 @@ public class MyMultiServer implements MultiServer
     private volatile boolean stop;
     ThreadPoolExecutor threadPool;
     
-    public MyMultiServer(final int port, final int threadsNum) {
+    public MyMultiServer(int port, int threadsNum) {
         this.port = port;
-        this.threadPool = new ThreadPoolExecutor(10, threadsNum, 10, TimeUnit.SECONDS, new PriorityBlockingQueue<Runnable>());
+        this.threadPool = new ThreadPoolExecutor(threadsNum, threadsNum, 10, TimeUnit.SECONDS, new PriorityBlockingQueue<>());
     }
     
     private void startServer(final ClientHandler ch) throws IOException {
