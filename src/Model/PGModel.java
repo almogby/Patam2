@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -180,4 +181,20 @@ public class PGModel {
 			}
 	        
 	    }
+	 
+		public void saveGame(File file) {
+			try {
+				PrintWriter outFile = new PrintWriter(file);
+				for (int i = 0; i < this.PGListBoard.size(); i++) 
+					outFile.println(new String(this.PGListBoard.get(i)));
+				
+				outFile.println("time:" + time.get());
+				outFile.println("step:" + numSteps.get());
+
+				outFile.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 }

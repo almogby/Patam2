@@ -218,8 +218,6 @@ public class MainWindowController implements Initializable {
 		if (chosen != null) {
 			System.out.println(chosen.getName());
 			this.PGVM.loadGame(chosen.getAbsolutePath());
-			/*readPipeData(chosen);
-			this.pipeDisplayer.setPipeData();*/
 		}
 		else
 			System.out.println("not found");
@@ -227,35 +225,17 @@ public class MainWindowController implements Initializable {
 	}
 	
 	
-	/*private List<char[]> readPipeData(File pipeFile){
-		  List<char[]> PGBoardBuilder = new ArrayList<char[]>();
-	        BufferedReader reader;
-	        try {
-
-	        reader = new BufferedReader(new FileReader(pipeFile));
-	        String line;
-	        while ((line = reader.readLine()) != null)
-	        	PGBoardBuilder.add(line.toCharArray());
-	        this.PGBorad.setAll(PGBoardBuilder.toArray(new char[PGBoardBuilder.size()][]));
-	        reader.close();
-	        }catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return PGBoardBuilder;
-	}*/
-	
 	public void saveFile() {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("Save pipe game");
-		FileChooser.ExtensionFilter fcEf = new FileChooser.ExtensionFilter("Only Texts", "*.txt");
+		FileChooser.ExtensionFilter fcef = new FileChooser.ExtensionFilter("Text Only", "*.txt");
 		
-		fc.getExtensionFilters().add(fcEf);
-		fc.setSelectedExtensionFilter(fcEf);
+		fc.getExtensionFilters().add(fcef);
+		fc.setSelectedExtensionFilter(fcef);
 		
-		File sFile = fc.showSaveDialog(null);
-		if (sFile!=null);
-			//TODO add save in ViewModel PipeGame
+		File fileToSave = fc.showSaveDialog(null);
+		if (fileToSave!=null);
+			this.PGVM.saveGame(fileToSave);
 	}	
 
 	public void setThemePottsChip() {

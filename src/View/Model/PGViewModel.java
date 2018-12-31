@@ -1,5 +1,6 @@
 package View.Model;
 
+import java.io.File;
 import java.io.IOException;
 import Model.PGModel;
 import java.net.Socket;
@@ -67,6 +68,10 @@ public class PGViewModel {
 	
 	 public void loadGame(String fileName){
 		 this.PGModel.loadGame(fileName);
+	 }
+	 
+	 public void saveGame(File file) {
+		 this.PGModel.saveGame(file);
 	 }
 
 }
