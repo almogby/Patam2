@@ -13,7 +13,7 @@
 <?import javafx.scene.control.Label?>
 
 
-<!-- <?import View.PipeDisplayer?>   --> 
+ <?import View.PipeDisplayer?>  
 <!-- backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png" -->
 
 <BorderPane prefHeight="349.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainWindowController">
@@ -85,6 +85,6 @@
       </VBox>
    </left>
     <center>
- <!--<PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />   -->      
+ <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />      
    </center>
 </BorderPane>

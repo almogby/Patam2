@@ -217,6 +217,7 @@ public class MainWindowController implements Initializable {
 		File chosen = fc.showOpenDialog(null);
 		if (chosen != null) {
 			System.out.println(chosen.getName());
+			this.PGVM.loadGame(chosen.getAbsolutePath());
 			/*readPipeData(chosen);
 			this.pipeDisplayer.setPipeData();*/
 		}
