@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
+import java.util.function.Function;
 
 import javax.print.DocFlavor.URL;
 
@@ -19,17 +20,20 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class PipeDisplayer extends Canvas{
 	
 	char[][] pipeData;
 	Theme theme;
 	
-	private double w,h;
+	private MediaPlayer mediaPlayer;
+	public double w,h;
 	
 /*	//pics fileName
 	private StringProperty backgroundFileName;
@@ -65,6 +69,13 @@ public class PipeDisplayer extends Canvas{
 		this.straightPipeFileName = new SimpleStringProperty();*/
 	}
 	
+	public double getW() {
+		return w;
+	}
+	
+	public double getH() {
+		return h;
+	}
 	public void setPipeTheme(Theme theme) {
 		this.theme=theme;
 		setPipeData(this.pipeData);
@@ -78,10 +89,15 @@ public class PipeDisplayer extends Canvas{
 	}
 	
 	public void startMusic() {
-			System.out.println("Start Music");
-			MediaPlayer mp = new MediaPlayer(theme.getBackgroundMusic());
+			if (this.mediaPlayer!=null)
+				this.mediaPlayer.stop();
+			Media media = theme.getBackgroundMusic();
+			this.mediaPlayer = new MediaPlayer(media);
+			this.mediaPlayer.play();
+			
+		/*	MediaPlayer mp = new MediaPlayer(theme.getBackgroundMusic());
 			Runnable playMusic = () -> mp.play();
-			mp.setOnReady(playMusic);
+			mp.setOnReady(playMusic);*/
 			
 			/*		AudioClip media =  new AudioClip(new File("/Users/amitsaar/git/Patam2/resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
 			media.setCycleCount(INDEFINITE);
@@ -158,6 +174,7 @@ public class PipeDisplayer extends Canvas{
 	public void setStraightPipeFileName(String straightPipeFileName) {
 		this.straightPipeFileName.set(straightPipeFileName);
 	}*/
+	
 	
 	public void insertImages () {
 		

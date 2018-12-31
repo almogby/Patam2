@@ -5,12 +5,13 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import View.PipeDisplayer?> 
+<?import View.PipeDisplayer?>
 <!-- backgroundFileName="./resources/background.png" startPointFileName="./resources/mickeyStart.png" targetPointFileName="./resources/MinneGoal.png" winFileName="./resources/Win.png" curvedPipeFileName="./resources/CurvedPipe_1.png" straightPipeFileName="./resources/StraightPipe_1.png" -->
 
 <BorderPane prefHeight="349.0" prefWidth="465.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MainWindowController">
@@ -35,7 +36,7 @@
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-          <MenuItem mnemonicParsing="false" text="How to play?" onAction="#howToPlayMsg"/> 
+          <MenuItem mnemonicParsing="false" onAction="#howToPlayMsg" text="How to play?" /> 
           </Menu>
         </menus>
       </MenuBar>
@@ -46,11 +47,16 @@
    <left>
       <VBox BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#971795" strokeType="OUTSIDE" strokeWidth="0.0" text="Pipe Game">
+            <Text fill="#d0b334" strokeType="OUTSIDE" strokeWidth="0.0" text="Pipe Game">
                <font>
                   <Font name="Impact" size="36.0" />
                </font>
             </Text>
+            <Button mnemonicParsing="false" onAction="#start" prefHeight="43.0" prefWidth="160.0" text="Start Game" textAlignment="CENTER" textFill="#4079c2">
+               <font>
+                  <Font name="Impact" size="18.0" />
+               </font>
+            </Button>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Time:">
                <VBox.margin>
                   <Insets top="10.0" />
@@ -59,12 +65,14 @@
                   <Font name="Kefa Regular" size="18.0" />
                </font>
             </Text>
+            <TextField fx:id="timeText" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Steps:">
                <font>
                   <Font name="Kefa Regular" size="18.0" />
                </font>
             </Text>
-            <Button mnemonicParsing="false" prefHeight="43.0" prefWidth="160.0" text="Get Solution" textAlignment="CENTER" textFill="#a31f8c">
+            <TextField fx:id="numStepsText" />
+            <Button mnemonicParsing="false" onAction="#solve" prefHeight="43.0" prefWidth="160.0" text="Get Solution" textAlignment="CENTER" textFill="#5aa120">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -75,6 +83,6 @@
       </VBox>
    </left>
     <center>
-     <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />
+   <PipeDisplayer fx:id="pipeDisplayer" height="500.0" width="500.0" BorderPane.alignment="CENTER" />     
    </center>
 </BorderPane>

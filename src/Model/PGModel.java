@@ -10,6 +10,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.management.timer.Timer;
 
@@ -17,21 +20,57 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 
 public class PGModel {
-	public ListProperty<char[]> PGBorad;
-	public BooleanProperty isGoal;
-	public IntegerProperty numSteps;
-	public IntegerProperty time;
 	
-	Timer timer = new Timer();
-	TimerTask task = new TimerTask() {
-		public void run(){
-			time.set(time.get() + 1);
-		}
+	private char[][] PGBoard = {
+			 {'s', 'L', 'F', '-', 'J', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', '|', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', 'L', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
+	            {'7', '7', '7', '7', '|', '7', '7', '7' , '7'},
+	            {'7', '7', '-', '-', '-', '-', '-', '-' , 'g'},
 	};
+
+	public BooleanProperty isGoal= new SimpleBooleanProperty();
+	public IntegerProperty numSteps= new SimpleIntegerProperty();
+	public IntegerProperty time = new SimpleIntegerProperty();
+	public ListProperty<char[]> PGListBoard = new SimpleListProperty<>(FXCollections.observableArrayList(new ArrayList<>()));
 	
 	private Socket serverSocket;
+	private ScheduledExecutorService executorTimer;
+	
+	public char[][] getPGBoard(){
+		return this.PGBoard;
+	}
+	
+	public void start() {
+		if (this.PGListBoard.size()==0)
+			this.PGListBoard.addAll(PGBoard);
+		
+		Runnable helloRunnable = () -> Platform.runLater(() -> time.setValue(time.get() + 1));
+
+		executorTimer = Executors.newScheduledThreadPool(1);
+		executorTimer.scheduleAtFixedRate(helloRunnable, 0, 1, TimeUnit.SECONDS);
+	}
+	
+	public void stop() {
+		if (executorTimer!=null)
+			executorTimer.shutdown();
+		executorTimer=null;
+	}
+	
+	public boolean isGameOn() {
+		if (executorTimer!=null)
+			return true;
+		return false;
+	}
 	
 	public void connect (String serverIP, String serverPort) {
 		try {
@@ -61,42 +100,43 @@ public class PGModel {
 	
 	//Extend of function taken from Server (PGSearchable)
 	public void getNextClick(int row,int col) {
-		  switch (PGBorad.get(col)[row]) {
+		  switch (PGBoard[col][row]) {
           case 's':
-              PGBorad.get(col)[row] = 's';
+        	  PGBoard[col][row] = 's';
               break;
           case 'g':
-              PGBorad.get(col)[row] = 'g';
+        	  PGBoard[col][row] = 'g';
               break;
 		  case 'L':
-              PGBorad.get(col)[row] = 'F';
+			  PGBoard[col][row] = 'F';
               numSteps.set(numSteps.get() + 1);
               break;
           case '-':
-              PGBorad.get(col)[row] = '|';
+        	  PGBoard[col][row] = '|';
               numSteps.set(numSteps.get() + 1);
               break;
           case '|':
-              PGBorad.get(col)[row] = '-';
+        	  PGBoard[col][row] = '-';
               numSteps.set(numSteps.get() + 1);
               break;
           case 'F':
-              PGBorad.get(col)[row] = '7';
+        	  PGBoard[col][row] = '7';
               numSteps.set(numSteps.get() + 1);
               break;
           case '7':
-              PGBorad.get(col)[row] = 'J';
+        	  PGBoard[col][row] = 'J';
               numSteps.set(numSteps.get() + 1);
               break;
           case 'J':
-              PGBorad.get(col)[row] = 'L';
+        	  PGBoard[col][row] = 'L';
               numSteps.set(numSteps.get() + 1);
               break;
           default:
-              PGBorad.get(col)[row] = ' ';
+        	  PGBoard[col][row] = ' ';
               break;
       }
-      PGBorad.set(col, PGBorad.get(col));
+		  this.PGListBoard.set(col,this.PGListBoard.get(col));
+		  
     
     }
 	
@@ -105,7 +145,7 @@ public class PGModel {
 			 BufferedReader inFromServer = new BufferedReader(new InputStreamReader(this.serverSocket.getInputStream()));
 	            PrintWriter outToServer = new PrintWriter(this.serverSocket.getOutputStream());
 
-	            for (char[] line : this.PGBorad.get()) {
+	            for (char[] line : this.PGListBoard.get()) {
 	                outToServer.println(line);
 	                outToServer.flush();
 	            }
@@ -128,7 +168,6 @@ public class PGModel {
 		}
 	}
 	
-	
 	 public void loadGame(String fileName) {
 	        List<char[]> PGBoardBuilder = new ArrayList<char[]>();
 	        BufferedReader reader;
@@ -138,7 +177,7 @@ public class PGModel {
 	        String line;
 	        while ((line = reader.readLine()) != null)
 	        	PGBoardBuilder.add(line.toCharArray());
-	        this.PGBorad.setAll(PGBoardBuilder.toArray(new char[PGBoardBuilder.size()][]));
+	        this.PGListBoard.setAll(PGBoardBuilder.toArray(new char[PGBoardBuilder.size()][]));
 	        reader.close();
 	        }catch (IOException e) {
 				// TODO Auto-generated catch block

@@ -1,15 +1,27 @@
 package View;
 
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.concurrent.Task;
+
+import Model.PGModel;
+import PG.PGSearchable;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -28,26 +40,18 @@ import View.Themes.TimonPumba;
 
 public class MainWindowController implements Initializable {
 	
-	PGViewModel PGVM;
-	public ListProperty<char[]> PGBorad;
+	private PGViewModel PGVM;
+	private PGModel PGM;
+/*	public ListProperty<char[]> PGBorad;
 	public BooleanProperty isGoal;
 	public IntegerProperty numSteps;
 	public IntegerProperty time;
-	
+	*/
 	
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
-   
-    char [][] pipeData = {
-            {'s', 'L', 'F', '-', 'J', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', '|', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', 'L', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', '7', '7', '7', '7' , '7'},
-            {'7', '7', '7', '7', '|', '7', '7', '7' , '7'},
-            {'7', '7', '-', '-', '-', '-', '-', '-' , 'g'},
-    };
+    
+    private File pipeFile;
 	
 	@FXML
 	PipeDisplayer pipeDisplayer;
@@ -55,6 +59,8 @@ public class MainWindowController implements Initializable {
 	TextField numStepsText;
 	@FXML
 	TextField timeText;
+	@FXML
+	Button solve;
 	
 /*	public void setViewModel (PGViewModel PGVM) {
 		this.PGVM=PGVM;
@@ -75,14 +81,59 @@ public class MainWindowController implements Initializable {
 	
 	}
 	*/
-	@Override
+	
+	 @Override
+	    public void initialize(URL location, ResourceBundle resources) {
+		 PGM = new PGModel();
+		 PGVM = new PGViewModel(PGM);
+		 
+		 setThemePottsChip();
+		 pipeDisplayer.setPipeData(PGVM.getPGBoard());
+		 pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{
+			 int col = (int) (e.getX() / pipeDisplayer.getW());
+		     int row = (int) (e.getY() / pipeDisplayer.getH());
+		     PGVM.getNextClick(col, row);
+		     pipeDisplayer.redraw();
+			 });
+		 
+
+
+	     PGVM.PGBoradList.addListener((observable, oldValue, newValue) -> pipeDisplayer.setPipeData(PGVM.PGBoradList.toArray(new char[PGVM.PGBoradList.size()][])));
+	     PGVM.numSteps.addListener((observable, oldValue, newValue) -> this.numStepsText.setText(Integer.toString(PGVM.numSteps.get())));
+	     PGVM.time.addListener((observable, oldValue, newValue) -> this.timeText.setText(Integer.toString(PGVM.time.get())));
+	    }
+	 
+	 public void solve() {
+		 stop();
+	        Task<Void> task = new Task<Void>() {
+	            @Override
+	            protected Void call() throws Exception {
+	                try {
+	                    System.out.println("Solve clicked ");
+	                    Platform.runLater(() -> System.out.println("Start Solving"));
+	                    PGVM.connect(serverConfig.getIP(), serverConfig.getPort());
+	                    PGVM.solve();
+	                    PGVM.disconnect();
+	                    Platform.runLater(() -> System.out.println("Server Status: Disconnected"));
+	                } catch (IOException e) {
+	                    Platform.runLater(() -> System.out.println("Server Status: Couldn't connect to the server"));
+	                    e.printStackTrace();
+	                }
+	                return null;
+	            }
+	        };
+	        new Thread(task).start();
+
+	 }
+	
+/*	@Override
 	public void initialize(java.net.URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		pipeDisplayer.setPipeData(pipeData);
 		pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{pipeDisplayer.clickedOnPosition(e);});
-	/*	setThemePottsChip();
-		pipeDisplayer.insertImages();*/
-	}
+		setThemePottsChip();
+		pipeDisplayer.insertImages();
+	}*/
 	
 /*	private void getAndShowTime(PGViewModel PGVM) {
 		this.time.addListener((observableValue, s, t1) -> {
@@ -129,9 +180,15 @@ public class MainWindowController implements Initializable {
 
 	
 	public void start() {
+		this.PGVM.start();
 		System.out.println("Start");
 	}
 	
+	
+	public void stop() {
+		this.PGVM.stop();
+		System.out.println("Stop");
+	}
 	
 	public void serverConfig() {
 		nakedObjDisplayer.display(this.serverConfig);
@@ -145,7 +202,7 @@ public class MainWindowController implements Initializable {
 	
 	public void openFile() throws IOException {
 		FileChooser fc= new FileChooser();
-		fc.setTitle("Open maze file");
+		fc.setTitle("Open pipe game file");
 		fc.setInitialDirectory(new File("./resources"));
 		
 		FileChooser.ExtensionFilter txtExtensionFilter = new FileChooser.ExtensionFilter("Text Files", "*.txt");
@@ -154,13 +211,36 @@ public class MainWindowController implements Initializable {
 		File chosen = fc.showOpenDialog(null);
 		if (chosen != null) {
 			System.out.println(chosen.getName());
-			//PGVM.loadGame(chosen.getPath());
+			/*readPipeData(chosen);
+			this.pipeDisplayer.setPipeData();*/
 		}
+		else
+			System.out.println("not found");
+		
 	}
+	
+	
+	/*private List<char[]> readPipeData(File pipeFile){
+		  List<char[]> PGBoardBuilder = new ArrayList<char[]>();
+	        BufferedReader reader;
+	        try {
+
+	        reader = new BufferedReader(new FileReader(pipeFile));
+	        String line;
+	        while ((line = reader.readLine()) != null)
+	        	PGBoardBuilder.add(line.toCharArray());
+	        this.PGBorad.setAll(PGBoardBuilder.toArray(new char[PGBoardBuilder.size()][]));
+	        reader.close();
+	        }catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return PGBoardBuilder;
+	}*/
 	
 	public void saveFile() {
 		FileChooser fc = new FileChooser();
-		fc.setTitle("Save maze");
+		fc.setTitle("Save pipe game");
 		FileChooser.ExtensionFilter fcEf = new FileChooser.ExtensionFilter("Only Texts", "*.txt");
 		
 		fc.getExtensionFilters().add(fcEf);

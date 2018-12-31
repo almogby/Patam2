@@ -33,5 +33,13 @@ public class ServerConfig implements NakedObject{
 	public String getFieldValue(String fieldName) {
 		return serverFields.get(fieldName);
 	}
+	
+	public String getIP() {
+        return serverFields.get("Server");
+    }
+
+    public String getPort() {
+        return serverFields.get("Port");
+    }
 
 }
