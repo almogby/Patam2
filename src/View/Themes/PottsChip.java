@@ -28,8 +28,8 @@ public class PottsChip implements Theme {
 			this.startImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Start_Mrs_Potts_1.jpg"));
 			this.goalImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Goal_Chip_1.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Potts_Chip_Win_1.png"));
-			this.curvedPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/CurvedPipe_1.png"));
-			this.straightPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/StraightPipe_1.png"));
+			this.curvedPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/CurvedPipe_1_1.png"));
+			this.straightPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/StraightPipe_1_1.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

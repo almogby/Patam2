@@ -25,8 +25,8 @@ public class TimonPumba implements Theme {
 			this.startImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Start_Pumba_2.png"));
 			this.goalImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Goal_Timon_2.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Win_TimonPumba_2.png"));
-			this.curvedPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/CurvedPipe_2.png"));
-			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_2.png"));
+			this.curvedPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/CurvedPipe_2_2.png"));
+			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_2_2.png"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
