@@ -29,6 +29,7 @@ public class PGViewModel {
 		this.time.bind(PGModel.time);
 		this.PGBoradList.bind(PGModel.PGListBoard);
 		
+		
 	/*	this.PGModel=PGModel;
 		this.PGBorad.bind(PGModel.PGBorad);
 		this.isGoal.bind(PGModel.isGoal);
@@ -63,8 +64,9 @@ public class PGViewModel {
 		this.PGModel.solve();
 	}
 	
-	public void getNextClick(int row,int col) {
-		this.PGModel.getNextClick(row, col);
+	public void getNextClick(int col,int row) {
+		this.PGModel.getNextClick(col, row);
+		
 	}
 	
 	 public void loadGame(String fileName){

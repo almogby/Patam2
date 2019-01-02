@@ -101,7 +101,7 @@ public class MainWindowController implements Initializable {
 		     try {
 		    	 PGVM.connect(serverConfig.getIP(), serverConfig.getPort());
 				if (this.PGVM.isPlayerFinish())
-					 pipeDisplayer.isGoal();
+					 winMsg();
 				PGVM.disconnect();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -212,6 +212,11 @@ public class MainWindowController implements Initializable {
 	public void serverConfig() {
 		nakedObjDisplayer.display(this.serverConfig);
 		
+	}
+	
+	public void winMsg() {
+		NakedMsg winMsg = new NakedMsg(pipeDisplayer.winMsg());
+		nakedObjDisplayer.display(winMsg);
 	}
 	
 	public void howToPlayMsg() {

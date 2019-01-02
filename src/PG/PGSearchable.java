@@ -21,6 +21,7 @@ public class PGSearchable implements Searchable<char[][]>{
 		this.findColRowSG();
 		}
 	
+	
 	//find the rows and cols of 's' and 'g'
 	private void findColRowSG() {
 		

@@ -1,4 +1,4 @@
-package View;
+ package View;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -303,6 +303,9 @@ public class PipeDisplayer extends Canvas{
 		return 10000;
 	}
 
+	public String winMsg() {
+		return ("Good job! You won");
+	}
 	public String howToPlayMsg() {
 		return ("Pipeline is a surprisingly fun 3D pipe laying game. "
 			+	System.lineSeparator()+ "Presented as a kid's game, gamers will enjoy it as a light contest too. "
