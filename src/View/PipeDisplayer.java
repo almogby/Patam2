@@ -112,6 +112,7 @@ public class PipeDisplayer extends Canvas{
 		}
 		
 
+	
 		
 	//	Media backgroundMusic = theme.getBackgroundMusic();
 	//	MediaPlayer mediaPlayer=new MediaPlayer(backgroundMusic);
@@ -209,11 +210,11 @@ public class PipeDisplayer extends Canvas{
 		
 	}
 	
-	//Just for test - need to remove
-	public void goalButton() {
+	public void isGoal() {
 		gc = getGraphicsContext2D();
 		gc.clearRect(0, 0, getWidth(), getHeight());
 		gc.drawImage(win, 0, 0, getWidth(), getHeight());
+		
 	}
 	
 	public void redraw() {
@@ -239,17 +240,17 @@ public class PipeDisplayer extends Canvas{
 						if (pipeData[i][j]=='g')
 							gc.drawImage(targetPoint, j*w, i*h, w, h);
 						if (pipeData[i][j]=='L')
-							gc.drawImage(curvedPipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='F')
-							gc.drawImage(curved90Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='7')
 							gc.drawImage(curved180Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='J')
+						if (pipeData[i][j]=='F')
 							gc.drawImage(curved270Pipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='7')
+							gc.drawImage(curvedPipe, j*w, i*h, w, h);
+						if (pipeData[i][j]=='J')
+							gc.drawImage(curved90Pipe, j*w, i*h, w, h);
 						if (pipeData[i][j]=='|')
-							gc.drawImage(straightPipe, j*w, i*h, w, h);
+							gc.drawImage(straight90Pipe, j*w, i*h, w, h);
 						if (pipeData[i][j]=='-')
-							gc.drawImage(straight90Pipe, j*w, i*h, w, h); 		
+							gc.drawImage(straightPipe, j*w, i*h, w, h); 		
 						}
 					}
 				}

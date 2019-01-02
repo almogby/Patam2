@@ -52,7 +52,7 @@ public class MainWindowController implements Initializable {
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
     
-    private File pipeFile;
+    
 	
 	@FXML
 	PipeDisplayer pipeDisplayer;
@@ -97,6 +97,19 @@ public class MainWindowController implements Initializable {
 		     int row = (int) (e.getY() / pipeDisplayer.getH());
 		     PGVM.getNextClick(col, row);
 		     pipeDisplayer.redraw();
+		     //check if goal
+		     try {
+		    	 PGVM.connect(serverConfig.getIP(), serverConfig.getPort());
+				if (this.PGVM.isPlayerFinish())
+					 pipeDisplayer.isGoal();
+				PGVM.disconnect();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			 });
 
 

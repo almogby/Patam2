@@ -21,6 +21,7 @@ public class PottsChip implements Theme {
 	private Image curvedPipe;
 	private Image straightPipe;
 	
+	
 	public PottsChip() {
 		try {
 			this.backgroundImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Background_1.jpg"));
@@ -31,6 +32,7 @@ public class PottsChip implements Theme {
 			this.curvedPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/CurvedPipe_1_1.png"));
 			this.straightPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/StraightPipe_1_1.png"));
 		} catch (FileNotFoundException e) {
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

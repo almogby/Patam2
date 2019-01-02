@@ -28,6 +28,7 @@ public class PGViewModel {
 		this.numSteps.bind(PGModel.numSteps);
 		this.time.bind(PGModel.time);
 		this.PGBoradList.bind(PGModel.PGListBoard);
+		
 	/*	this.PGModel=PGModel;
 		this.PGBorad.bind(PGModel.PGBorad);
 		this.isGoal.bind(PGModel.isGoal);
@@ -72,6 +73,9 @@ public class PGViewModel {
 	 
 	 public void saveGame(File file) {
 		 this.PGModel.saveGame(file);
+	 }
+	 public boolean isPlayerFinish() throws IOException, InterruptedException {
+		 return this.PGModel.isPlayerFinish();
 	 }
 
 }
