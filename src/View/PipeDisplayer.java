@@ -1,27 +1,13 @@
  package View;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URISyntaxException;
-import java.util.function.Function;
-
-import javax.print.DocFlavor.URL;
-
-import PG.PGSearchable;
-import View.NakedObject.NakedMsg;
 import View.Themes.PottsChip;
 import View.Themes.Theme;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
-import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 
 import javafx.scene.media.Media;
@@ -34,14 +20,6 @@ public class PipeDisplayer extends Canvas{
 	
 	private MediaPlayer mediaPlayer;
 	public double w,h;
-	
-/*	//pics fileName
-	private StringProperty backgroundFileName;
-	private StringProperty startPointFileName;
-	private StringProperty targetPointFileName;
-	private StringProperty winFileName;
-	private StringProperty curvedPipeFileName;
-	private StringProperty straightPipeFileName;*/
 	
 	//set pics
 	private Image background;
@@ -60,13 +38,6 @@ public class PipeDisplayer extends Canvas{
 	
 	public PipeDisplayer() {
 		theme = new PottsChip();
-
-/*		this.backgroundFileName = new SimpleStringProperty();
-		this.startPointFileName = new SimpleStringProperty();
-		this.targetPointFileName = new SimpleStringProperty();
-		this.winFileName = new SimpleStringProperty();
-		this.curvedPipeFileName = new SimpleStringProperty();
-		this.straightPipeFileName = new SimpleStringProperty();*/
 	}
 	
 	public double getW() {
@@ -93,104 +64,19 @@ public class PipeDisplayer extends Canvas{
 				this.mediaPlayer.stop();
 			Media media = theme.getBackgroundMusic();
 			this.mediaPlayer = new MediaPlayer(media);
-			this.mediaPlayer.play();
-			
-		/*	MediaPlayer mp = new MediaPlayer(theme.getBackgroundMusic());
-			Runnable playMusic = () -> mp.play();
-			mp.setOnReady(playMusic);*/
-			
-			/*		AudioClip media =  new AudioClip(new File("/Users/amitsaar/git/Patam2/resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
-			media.setCycleCount(INDEFINITE);
-			media.play();*/
-			
-	/*		System.out.println("Start Play Music");
-			Media media = new Media(new File("./resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
-			MediaPlayer mp = new MediaPlayer(media);
-			Runnable playMusic = () -> mp.play();
-			mp.setOnReady(playMusic);*/
-	
-		}
-		
-
-	
-		
-	//	Media backgroundMusic = theme.getBackgroundMusic();
-	//	MediaPlayer mediaPlayer=new MediaPlayer(backgroundMusic);
-	//	mediaPlayer.play();
-		//MediaView mediaView = new MediaView(mediaPlayer);
-	
-
-/*	public String getBackgroundFileName() {
-		return backgroundFileName.get();
+			this.mediaPlayer.play();	
 	}
-
-
-	public void setBackgroundFileName(String backgroundFileName) {
-		this.backgroundFileName.set(backgroundFileName);
-	}
-	
-	public String getStartPointFileName() {
-		return startPointFileName.get();
-	}
-
-	public void setStartPointFileName(String startPointFileName) {
-		this.startPointFileName.set(startPointFileName);
-	}
-
-	public String getTargetPointFileName() {
-		return targetPointFileName.get();
-	}
-
-
-	public void setTargetPointFileName(String targetPointFileName) {
-		this.targetPointFileName.set(targetPointFileName);
-	}
-
-
-	public String getWinFileName() {
-		return winFileName.get();
-	}
-
-
-	public void setWinFileName(String winFileName) {
-		this.winFileName.set(winFileName);
-	}
-
-
-	public String getCurvedPipeFileName() {
-		return curvedPipeFileName.get();
-	}
-
-
-	public void setCurvedPipeFileName(String curvedPipeFileName) {
-		this.curvedPipeFileName.set(curvedPipeFileName);
-	}
-
-
-	public String getStraightPipeFileName() {
-		return straightPipeFileName.get();
-	}
-
-
-	public void setStraightPipeFileName(String straightPipeFileName) {
-		this.straightPipeFileName.set(straightPipeFileName);
-	}*/
 	
 	
 	public void insertImages () {
 		
-		//try {
 			background = theme.getBackgroundImage();//new Image(new FileInputStream(backgroundFileName.get()));
 			startPoint = theme.getStartImage();//new Image(new FileInputStream(startPointFileName.get()));
 			targetPoint = theme.getGoalImage(); //new Image(new FileInputStream(targetPointFileName.get()));
 			win =theme.getWinImage(); // new Image(new FileInputStream(winFileName.get()));
 			curvedPipe = theme.getCurvedPipe(); //new Image(new FileInputStream(curvedPipeFileName.get()));
 			straightPipe = theme.getStraightPipe(); //new Image(new FileInputStream(straightPipeFileName.get()));
-		//} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		//}
-		
+
 		SnapshotParameters params = new SnapshotParameters();
 		params.setFill(Color.TRANSPARENT);
 		
@@ -265,14 +151,7 @@ public class PipeDisplayer extends Canvas{
         redraw();
     }
     
-    public void clickedOnPosition(MouseEvent event) {
-        int col = (int) (event.getX() / w);
-        int row = (int) (event.getY() / h);
-        pipeData[row][col] = PGSearchable.getNextClick(pipeData[row][col]);
-        //TODO: clear to prev image after click
-		//gc.clearRect(pipeData[row][col], pipeData[row][col], w, h);
-        redraw();
-    }
+
 	@Override
 	public boolean isResizable() {
 		return true;

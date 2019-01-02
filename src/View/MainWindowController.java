@@ -1,29 +1,19 @@
 package View;
 
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.concurrent.Task;
 
 import Model.PGModel;
-import PG.PGSearchable;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.FileChooser;
@@ -43,16 +33,9 @@ public class MainWindowController implements Initializable {
 	
 	private PGViewModel PGVM;
 	private PGModel PGM;
-/*	public ListProperty<char[]> PGBorad;
-	public BooleanProperty isGoal;
-	public IntegerProperty numSteps;
-	public IntegerProperty time;
-	*/
 	
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
-    
-    
 	
 	@FXML
 	PipeDisplayer pipeDisplayer;
@@ -64,26 +47,6 @@ public class MainWindowController implements Initializable {
 	Button solve;
 	@FXML
 	Button start;
-	
-/*	public void setViewModel (PGViewModel PGVM) {
-		this.PGVM=PGVM;
-		//Get solution from model and call to setPipeData to redraw
-		this.PGBorad.bind(this.PGVM.PGBorad);
-		this.buildUiOfSolution(PGVM);
-		
-		this.isGoal.bind(this.PGVM.isGoal);
-		this.goalChecking(PGVM);
-		
-		this.mouseEvent(PGVM);
-		
-		this.numSteps.bindBidirectional(this.PGVM.numSteps);
-		this.getAndShowNumOfSteps(PGVM);
-		
-		this.time.bind(this.PGVM.time);
-		this.getAndShowTime(PGVM);
-	
-	}
-	*/
 	
 	 @Override
 	    public void initialize(URL location, ResourceBundle resources) {
@@ -119,6 +82,7 @@ public class MainWindowController implements Initializable {
 	     
 	    }
 	 
+	 
 	 public void solve() {
 		 stop();
 	        Task<Void> task = new Task<Void>() {
@@ -142,58 +106,6 @@ public class MainWindowController implements Initializable {
 	        new Thread(task).start();
 
 	 }
-	
-/*	@Override
-	public void initialize(java.net.URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		pipeDisplayer.setPipeData(pipeData);
-		pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{pipeDisplayer.clickedOnPosition(e);});
-		setThemePottsChip();
-		pipeDisplayer.insertImages();
-	}*/
-	
-/*	private void getAndShowTime(PGViewModel PGVM) {
-		this.time.addListener((observableValue, s, t1) -> {
-			this.timeText.setText(Integer.toString(time.get()));
-		});
-	}
-	
-	private void getAndShowNumOfSteps (PGViewModel PGVM) {
-		this.numSteps.addListener((observableValue, s, t1) -> {
-			this.numStepsText.setText(Integer.toString(numSteps.get()));
-		});
-	}
-	
-	private void mouseEvent(PGViewModel PGVM) {
-		pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, 
-				(e)->{
-					double w = pipeDisplayer.getWidth() / PGBorad.get(0).length;
-					double h = pipeDisplayer.getHeight() / PGBorad.size();
-					int x = (int) (e.getX() / w);
-					int y = (int) (e.getY() / h);
-					PGVM.getNextClick(x, y);
-				//	pipeDisplayer.redraw();
-					});
-	}
-	
-	private void buildUiOfSolution (PGViewModel PGVM) {
-		this.PGBorad.addListener((observableValue, s, t1) -> {
-			pipeDisplayer.setPipeData(this.PGBorad.toArray(new char[this.PGBorad.size()][]));
-		});
-	}
-	
-	private void goalChecking(PGViewModel PGVM) {
-		this.isGoal.addListener((observableValue, s, t1) -> {
-			if (isGoal.get() == true) {
-				NakedMsg nm = new NakedMsg("You Won!");
-				//nm.addMessage("Number of steps: " + numSteps.get());
-				// Reset number of steps after solve
-				numSteps.set(0);
-				nakedObjDisplayer.display(nm);
-			}
-		});
-	}*/
-
 
 	
 	public void start() {

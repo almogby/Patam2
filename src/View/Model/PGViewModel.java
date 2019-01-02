@@ -30,11 +30,6 @@ public class PGViewModel {
 		this.PGBoradList.bind(PGModel.PGListBoard);
 		
 		
-	/*	this.PGModel=PGModel;
-		this.PGBorad.bind(PGModel.PGBorad);
-		this.isGoal.bind(PGModel.isGoal);
-		this.numSteps.bind(PGModel.numSteps);
-		this.time.bind(PGModel.time);*/
 	}
 	public void start() {
 		this.PGModel.start();

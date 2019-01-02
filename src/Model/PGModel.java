@@ -89,6 +89,7 @@ public class PGModel {
 				e.printStackTrace();
 			}
 	}
+	
 
 	// Extend of function taken from Server (PGSearchable)
 	public void getNextClick(int row, int col) {
