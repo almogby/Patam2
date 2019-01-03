@@ -16,10 +16,11 @@ import javafx.stage.Stage;
 public class NakedObjDisplayer {
 	
 	private VBox dialogBox;
-	private Stage dialog = new Stage();
+	
 	
 	public void display (NakedObject obj)
 	{
+		final Stage dialog = new Stage();
 		dialog.initModality(Modality.APPLICATION_MODAL);
 		List<StringProperty> textPropertyList = new ArrayList<>();
 		Field[] fields = obj.getClass().getFields();
@@ -37,13 +38,14 @@ public class NakedObjDisplayer {
 			for (int i=0;i<obj.getFieldNames().size();i++) {
 				obj.setFieldNewValue(obj.getFieldNames().get(i), textPropertyList.get(i).getValue());
 			}
-			this.dialog.close();
+			dialog.close();
 		});
 		this.dialogBox.getChildren().add(saveButton);
-		showDialog(this.dialog, this.dialogBox);
+		showDialog(dialog, this.dialogBox);
 	}
 	
 	public void display (NakedMsg msg) {
+		final Stage dialog = new Stage();
 		dialog.initModality(Modality.APPLICATION_MODAL);
 		this.dialogBox = new VBox(msg.getFieldNames().size()*10);
 		dialogBox.setPadding(new Insets(40, 40, 40, 40));
@@ -59,7 +61,7 @@ public class NakedObjDisplayer {
 
 		this.dialogBox.getChildren().add(okButton);
 		
-		showDialog(this.dialog, this.dialogBox);
+		showDialog(dialog, this.dialogBox);
 	}
 	
 	private StringProperty createDisplayForField (String fieldName, String fieldValue) {

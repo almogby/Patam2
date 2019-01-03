@@ -19,6 +19,7 @@ public class NakedMsg implements NakedObject {
 	public List<String> getFieldNames() {
 		return this.msgList;
 	}
+	
 
 	@Override
 	public void setFieldNewValue(String fieldName, String newValue) {
