@@ -36,6 +36,8 @@ public class MainWindowController implements Initializable {
 	
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
+    
+    private boolean isStart = false;
 	
 	@FXML
 	PipeDisplayer pipeDisplayer;
@@ -58,6 +60,11 @@ public class MainWindowController implements Initializable {
 		 setThemePottsChip();
 		 pipeDisplayer.setPipeData(PGVM.getPGBoard());
 		 pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{
+			 if (isStart==false)
+				 notStartMsg();
+			 else
+			 {
+			 
 			 int col = (int) (e.getX() / pipeDisplayer.getW());
 		     int row = (int) (e.getY() / pipeDisplayer.getH());
 		     PGVM.getNextClick(row, col);
@@ -75,7 +82,7 @@ public class MainWindowController implements Initializable {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			 });
+			 }});
 
 
 	     PGVM.PGBoradList.addListener((observable, oldValue, newValue) -> pipeDisplayer.setPipeData(PGVM.PGBoradList.toArray(new char[PGVM.PGBoradList.size()][])));
@@ -112,6 +119,7 @@ public class MainWindowController implements Initializable {
 
 	
 	public void start() {
+		isStart=true;
 		this.PGVM.start();
 		start.setDisable(true);
 		System.out.println("Start");
@@ -127,6 +135,11 @@ public class MainWindowController implements Initializable {
 	public void serverConfig() {
 		nakedObjDisplayer.display(this.serverConfig);
 		
+	}
+	
+	public void notStartMsg() {
+		NakedMsg notStartMsg = new NakedMsg(pipeDisplayer.notStartMsg());
+		nakedObjDisplayer.display(notStartMsg);
 	}
 	
 	public void winMsg() {

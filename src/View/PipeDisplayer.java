@@ -182,6 +182,10 @@ public class PipeDisplayer extends Canvas{
 	public double maxWidth(double height) {
 		return 10000;
 	}
+	
+	public String notStartMsg() {
+		return ("Oops! Please click on Start button");
+	}
 
 	public String winMsg() {
 		return ("Good job! You won");
