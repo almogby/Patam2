@@ -106,6 +106,7 @@ public class MainWindowController implements Initializable {
 	        new Thread(task).start();
 
 	 }
+	 
 
 	
 	public void start() {

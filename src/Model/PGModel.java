@@ -27,7 +27,7 @@ import javafx.collections.FXCollections;
 
 public class PGModel {
 
-	private char[][] PGBoard = { { 's', '7', 'F' }, { '-', '|', 'F' }, { '|', '7', 'g' } };
+	private char[][] PGBoard= { { 's', '7', 'F' }, { '-', '|', 'F' }, { '|', '7', 'g' } };
 
 	public BooleanProperty isGoal = new SimpleBooleanProperty();
 	public IntegerProperty numSteps = new SimpleIntegerProperty();
@@ -39,9 +39,9 @@ public class PGModel {
 	private ScheduledExecutorService executorTimer;
 
 	public char[][] getPGBoard() {
-		return this.PGBoard;
+			return this.PGBoard;	
 	}
-
+	
 	public void start() {
 		if (this.PGListBoard.size() == 0)
 			this.PGListBoard.addAll(PGBoard);
@@ -201,6 +201,7 @@ public class PGModel {
 			while ((line = reader.readLine()) != null)
 				PGBoardBuilder.add(line.toCharArray());
 			this.PGListBoard.setAll(PGBoardBuilder.toArray(new char[PGBoardBuilder.size()][]));
+			this.PGBoard=this.PGListBoard.toArray(new char [this.PGListBoard.size()][]);
 			reader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -208,7 +209,7 @@ public class PGModel {
 		}
 
 	}
-
+	
 	public void saveGame(File file) {
 		try {
 			PrintWriter outFile = new PrintWriter(file);
