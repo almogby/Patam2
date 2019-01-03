@@ -27,7 +27,9 @@ import javafx.collections.FXCollections;
 
 public class PGModel {
 
-	private char[][] PGBoard= { { 's', '7', 'F' }, { '-', '|', 'F' }, { '|', '7', 'g' } };
+	private char[][] PGBoard= { { 's', '7', 'F' },
+			{ '|', '|', 'F' },
+			{ 'L', '|', 'g' } };
 
 	public BooleanProperty isGoal = new SimpleBooleanProperty();
 	public IntegerProperty numSteps = new SimpleIntegerProperty();

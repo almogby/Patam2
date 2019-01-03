@@ -23,7 +23,7 @@ public class TimonPumba implements Theme {
 			this.backgroundImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Background_leaves_2.jpg"));
 			this.backgroundMusic = new Media (new File("./resources/Theme2_TimonPumba/DontWorry.mp3").toURI().toString());
 			this.startImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Start_Pumba_2.png"));
-			this.goalImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Goal_Timon_2.png"));
+			this.goalImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Goal_Timon_2_2.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme2_TimonPumba/Win_TimonPumba_2.png"));
 			this.curvedPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/CurvedPipe_2_2.png"));
 			this.straightPipe = new Image(new FileInputStream("./resources/Theme2_TimonPumba/StraightPipe_2_2.png"));

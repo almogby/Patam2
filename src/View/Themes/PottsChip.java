@@ -26,7 +26,7 @@ public class PottsChip implements Theme {
 		try {
 			this.backgroundImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Background_1.jpg"));
 			this.backgroundMusic = new Media (new File("./resources/Theme1_PottsChip/BeOurGuest_1.mp3").toURI().toString());
-			this.startImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Start_Mrs_Potts_1.jpg"));
+			this.startImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Start_Mrs_Potts_1_1.png"));
 			this.goalImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Goal_Chip_1.png"));
 			this.winImage = new Image(new FileInputStream("./resources/Theme1_PottsChip/Potts_Chip_Win_1.png"));
 			this.curvedPipe = new Image(new FileInputStream("./resources/Theme1_PottsChip/CurvedPipe_1_1.png"));
