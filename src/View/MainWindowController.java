@@ -93,6 +93,9 @@ public class MainWindowController implements Initializable {
 	 
 	 
 	 public void solve() {
+		 if (this.isStart==false)
+			 notStartMsg();
+		 else {
 		 stop();
 	        Task<Void> task = new Task<Void>() {
 	            @Override
@@ -113,7 +116,7 @@ public class MainWindowController implements Initializable {
 	            }
 	        };
 	        new Thread(task).start();
-
+		 }
 	 }
 	 
 
@@ -128,7 +131,6 @@ public class MainWindowController implements Initializable {
 	
 	public void stop() {
 		this.PGVM.stop();
-		start.setDisable(false);
 		System.out.println("Stop");
 	}
 	
