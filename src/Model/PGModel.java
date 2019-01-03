@@ -42,6 +42,7 @@ public class PGModel {
 			return this.PGBoard;	
 	}
 	
+	
 	public void start() {
 		if (this.PGListBoard.size() == 0)
 			this.PGListBoard.addAll(PGBoard);
@@ -93,42 +94,42 @@ public class PGModel {
 
 	// Extend of function taken from Server (PGSearchable)
 	public void getNextClick(int row, int col) {
-		switch (PGBoard[col][row]) {
+		switch (PGBoard[row][col]) {
 		case 's':
-			PGBoard[col][row] = 's';
+			PGBoard[row][col] = 's';
 			break;
 		case 'g':
-			PGBoard[col][row] = 'g';
+			PGBoard[row][col] = 'g';
 			break;
 		case 'L':
-			PGBoard[col][row] = 'F';
+			PGBoard[row][col] = 'F';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		case '-':
-			PGBoard[col][row] = '|';
+			PGBoard[row][col] = '|';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		case '|':
-			PGBoard[col][row] = '-';
+			PGBoard[row][col] = '-';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		case 'F':
-			PGBoard[col][row] = '7';
+			PGBoard[row][col] = '7';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		case '7':
-			PGBoard[col][row] = 'J';
+			PGBoard[row][col] = 'J';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		case 'J':
-			PGBoard[col][row] = 'L';
+			PGBoard[row][col] = 'L';
 			numSteps.set(numSteps.get() + 1);
 			break;
 		default:
-			PGBoard[col][row] = ' ';
+			PGBoard[row][col] = ' ';
 			break;
 		}
-		this.PGListBoard.set(col, this.PGListBoard.get(col));
+		this.PGListBoard.set(row, this.PGListBoard.get(row));
 
 		// check if player finish
 		try {
@@ -140,6 +141,7 @@ public class PGModel {
 		}
 
 	}
+	
 	
 	public boolean isPlayerFinish() throws IOException, InterruptedException {
 		if (serverSocket != null) {

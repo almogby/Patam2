@@ -59,8 +59,8 @@ public class PGViewModel {
 		this.PGModel.solve();
 	}
 	
-	public void getNextClick(int col,int row) {
-		this.PGModel.getNextClick(col, row);
+	public void getNextClick(int row,int col) {
+		this.PGModel.getNextClick(row, col);
 		
 	}
 	

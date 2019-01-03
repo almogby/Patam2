@@ -53,12 +53,14 @@ public class MainWindowController implements Initializable {
 		 PGM = new PGModel();
 		 PGVM = new PGViewModel(PGM);
 		 
+		 
+		 
 		 setThemePottsChip();
 		 pipeDisplayer.setPipeData(PGVM.getPGBoard());
 		 pipeDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{
 			 int col = (int) (e.getX() / pipeDisplayer.getW());
 		     int row = (int) (e.getY() / pipeDisplayer.getH());
-		     PGVM.getNextClick(col, row);
+		     PGVM.getNextClick(row, col);
 		     pipeDisplayer.redraw();
 		     //check if goal
 		     try {

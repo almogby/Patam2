@@ -106,6 +106,7 @@ public class PipeDisplayer extends Canvas{
 	public void redraw() {
 		if (pipeData!=null) {
 			
+			
 			double W=getWidth();
 			double H=getHeight();
 			w= W / pipeData[0].length;
@@ -117,26 +118,26 @@ public class PipeDisplayer extends Canvas{
 			//Set background
 			gc.drawImage(background, 0,0,W,H);
 		
-			//Draw specific cell
-			for (int i=0;i<pipeData.length;i++) {
-				for(int j=0;j<pipeData[i].length;j++) {
-					if (pipeData[i][j]!=0) {
-						if (pipeData[i][j]=='s')
-							gc.drawImage(startPoint, j*w, i*h, w, h);
-						if (pipeData[i][j]=='g')
-							gc.drawImage(targetPoint, j*w, i*h, w, h);
-						if (pipeData[i][j]=='L')
-							gc.drawImage(curved180Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='F')
-							gc.drawImage(curved270Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='7')
-							gc.drawImage(curvedPipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='J')
-							gc.drawImage(curved90Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='|')
-							gc.drawImage(straight90Pipe, j*w, i*h, w, h);
-						if (pipeData[i][j]=='-')
-							gc.drawImage(straightPipe, j*w, i*h, w, h); 		
+			//Draw specific cell:
+			for (int row=0;row<pipeData.length;row++) {
+				for(int col=0;col<pipeData[row].length;col++) {
+					if (pipeData[row][col]!=0) {
+						if (pipeData[row][col]=='s')
+							gc.drawImage(startPoint, col*w, row*h, w, h);
+						if (pipeData[row][col]=='g')
+							gc.drawImage(targetPoint, col*w, row*h, w, h);
+						if (pipeData[row][col]=='L')
+							gc.drawImage(curved180Pipe, col*w, row*h, w, h);
+						if (pipeData[row][col]=='F')
+							gc.drawImage(curved270Pipe, col*w, row*h, w, h);
+						if (pipeData[row][col]=='7')
+							gc.drawImage(curvedPipe, col*w, row*h, w, h);
+						if (pipeData[row][col]=='J')
+							gc.drawImage(curved90Pipe, col*w, row*h, w, h);
+						if (pipeData[row][col]=='|')
+							gc.drawImage(straight90Pipe, col*w, row*h, w, h);
+						if (pipeData[row][col]=='-')
+							gc.drawImage(straightPipe, col*w, row*h, w, h); 		
 						}
 					}
 				}
