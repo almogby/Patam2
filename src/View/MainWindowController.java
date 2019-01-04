@@ -37,6 +37,7 @@ public class MainWindowController implements Initializable {
     private NakedObjDisplayer nakedObjDisplayer = new NakedObjDisplayer();
     private ServerConfig serverConfig = new ServerConfig();
     
+    
     private boolean isStart = false;
 	
 	@FXML
@@ -125,6 +126,7 @@ public class MainWindowController implements Initializable {
 		isStart=true;
 		this.PGVM.start();
 		start.setDisable(true);
+		this.PGM.resetTimeSteps();
 		System.out.println("Start");
 	}
 	
@@ -166,6 +168,8 @@ public class MainWindowController implements Initializable {
 		if (chosen != null) {
 			System.out.println(chosen.getName());
 			this.PGVM.loadGame(chosen.getAbsolutePath());
+	/*		this.PGVM.resetTimeSteps();*/
+			start.setDisable(false);
 		}
 		else
 			System.out.println("not found");

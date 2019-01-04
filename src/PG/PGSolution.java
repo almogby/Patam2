@@ -29,6 +29,7 @@ public class PGSolution implements Serializable {
             System.out.println(click);
         }
         
+        
     }
 	
 	public PGSolution(Solution sol) {

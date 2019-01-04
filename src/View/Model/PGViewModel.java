@@ -20,6 +20,7 @@ public class PGViewModel {
 	public IntegerProperty numSteps=new SimpleIntegerProperty();
 	public IntegerProperty time=new SimpleIntegerProperty();
 	
+	
 	private PGModel PGModel;
 	
 	public PGViewModel (PGModel PGModel) {
@@ -30,6 +31,10 @@ public class PGViewModel {
 		this.PGBoradList.bind(PGModel.PGListBoard);
 		
 		
+	}
+	
+	public void resetTimeSteps() {
+		this.PGModel.resetTimeSteps();
 	}
 	public void start() {
 		this.PGModel.start();

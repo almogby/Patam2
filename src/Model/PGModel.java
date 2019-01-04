@@ -37,6 +37,7 @@ public class PGModel {
 	public ListProperty<char[]> PGListBoard = new SimpleListProperty<>(
 			FXCollections.observableArrayList(new ArrayList<>()));
 
+	
 	private Socket serverSocket;
 	private ScheduledExecutorService executorTimer;
 
@@ -44,10 +45,15 @@ public class PGModel {
 			return this.PGBoard;	
 	}
 	
+	public void resetTimeSteps() {
+		this.time.set(0);
+		this.numSteps.set(0);
+	}
 	
 	public void start() {
 		if (this.PGListBoard.size() == 0)
 			this.PGListBoard.addAll(PGBoard);
+
 
 		Runnable helloRunnable = () -> Platform.runLater(() -> time.setValue(time.get() + 1));
 
